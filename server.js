@@ -19,7 +19,10 @@ app.use(userRoutes);
 const authRoutes = require("./routes/auth.js");
 app.use(authRoutes);
 
-mongoose.connect(process.env.MONGODB_URI ||"mongodb://localhost/reactfullstack");
+const ticketsRoutes = require("./routes/tickets.js");
+app.use(ticketsRoutes);
+
+mongoose.connect(process.env.MONGODB_URI ||"mongodb://localhost/overseer");
 
 app.listen(PORT, function(){
   console.log(`Connected on PORT ${PORT}.`);
