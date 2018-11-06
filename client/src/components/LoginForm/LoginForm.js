@@ -4,13 +4,35 @@ import API from "../../api/auth";
 export default class LoginForm extends Component {
     state = {
         username:"",
-        password:""
+        password:"",
+        department:""
     }
     handleLogin = (event) => {
         event.preventDefault();
-        console.log("Log In", this.state);
         API.login(this.state).then(function(response){
-            console.log(response);
+            if(response.data.success === true){
+                if(response.data.department === "FD"){
+                    console.log("Route to '/frontdesk'");
+                }
+                else if(response.data.department === "HSKP"){
+                    console.log("Route to '/housekeeping'");
+                }
+                else if(response.data.department === "ENG"){
+                    console.log("Route to '/engineering'");
+                }
+                else if(response.data.department === "IRD"){
+                    console.log("Route to '/dining'");
+                }
+                else if(response.data.department === "SEC"){
+                    console.log("Route to '/security'");
+                }
+                else if(response.data.department === "MAN"){
+                    console.log("Route to '/managment'");
+                }
+            }
+            else{
+                console.log("Invalid Password");
+            }
         });
     }
     captureInput = (event) => {
@@ -18,6 +40,7 @@ export default class LoginForm extends Component {
             [event.target.name]:event.target.value
         })
     }
+    
     render(){
         return(
             <form style={{marginTop: "40px", marginBottom: "40px", marginLeft: "30px" , marginRight: "30px"}}>

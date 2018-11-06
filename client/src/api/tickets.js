@@ -4,8 +4,8 @@ const API = {
     getTickets:function(){
         return axios.get("/api/tickets");
     },
-    createTickets:function(){
-        return axios.post("/api/tickets")
+    createTickets:function(newTicket){
+        return axios.post("/api/tickets" , newTicket)
     },
     updateTickets:function(){
         console.log("Updating Ticket");

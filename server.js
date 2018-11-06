@@ -22,7 +22,7 @@ app.use(authRoutes);
 const ticketsRoutes = require("./routes/tickets.js");
 app.use(ticketsRoutes);
 
-mongoose.connect(process.env.MONGODB_URI ||"mongodb://localhost/overseer");
+mongoose.connect(process.env.MONGODB_URI ||"mongodb://localhost/Overseer");
 
 app.listen(PORT, function(){
   console.log(`Connected on PORT ${PORT}.`);

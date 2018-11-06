@@ -7,6 +7,9 @@ const API = {
     login:function(newUser){
         console.log("Login")
         return axios.post("/login", newUser)
+    },
+    storeUser:function(userData){
+        return axios.post("/user" , userData)
     }
 }
 
