@@ -14,6 +14,16 @@ router.get("/api/tickets", function (req, res) {
     })
 });
 
+router.get("/ticketdetails", function (req, res) {
+    db.Tickets.findOne({ _id: req.params.id }, function (err, response) {
+        if (err) {
+            console.log(err);
+            res.send(err);
+        }
+        res.json(response)
+    })
+});
+
 router.post("/api/tickets", function (req, res) {
     console.log(req.body);
     db.Tickets.create(req.body, function(error, response) {
