@@ -4,9 +4,6 @@ const API = {
     getTickets:function(){
         return axios.get("/api/tickets");
     },
-    ticketdetails:function(ticketId){
-        return axios.get("ticketdetails" , ticketId);
-    },
     createTickets:function(newTicket){
         return axios.post("/api/tickets" , newTicket)
     },

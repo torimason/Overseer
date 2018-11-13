@@ -1,12 +1,10 @@
 import React from "react";
-import LoginNav from "../components/LoginNav";
 import Footer from "../components/Footer";
-import FrontDeskTable from "../components/FrontDeskTable";
-import TicketData from "../components/TicketData";
 import FrontDeskRequest from "../components/FrontDeskRequest";
+import FrontDeskNav from "../components/FrontDeskNav";
 
 const FrontDesk = () => <div>
-    <LoginNav />
+    <FrontDeskNav/>
     <FrontDeskRequest/>
     <Footer />
 </div>

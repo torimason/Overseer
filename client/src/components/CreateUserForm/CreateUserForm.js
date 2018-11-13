@@ -15,10 +15,20 @@ export default class CreateUserForm extends Component {
         console.log("Sign Up", this.state);
         API.signup(this.state).then(function (response) {
             console.log(response);
-            Swal({
-                title: "User Created!",
-                type: "success"
-            })
+        }).then(function(){
+            const toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+            });
+            toast({
+                type: 'success',
+                title: 'User created successfully'
+            });
+            setTimeout(function() {
+                window.location.reload();
+              }, 3000);
         })
     }
   

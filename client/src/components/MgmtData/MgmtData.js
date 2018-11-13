@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import API from "../../api/tickets";
 
-class FrontDeskRequest extends Component {
+class MgmtData extends Component {
     state = {
         ticket: [],
         ticketDetails: ["Empty", "", "", "Empty", "Ticket", "Details"],
@@ -129,4 +129,4 @@ class FrontDeskRequest extends Component {
     }
 }
 
-export default FrontDeskRequest;
+export default MgmtData;

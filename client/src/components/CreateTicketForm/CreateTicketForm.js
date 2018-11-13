@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import API from "../../api/tickets";
 import moment from "moment";
+import Swal from 'sweetalert2';
 
 export default class CreateTicketForm extends Component {
     state = {
@@ -13,13 +14,28 @@ export default class CreateTicketForm extends Component {
         comments: "",
         status: "Submitted"
     }
+
     handleSubmit = (event) => {
         event.preventDefault();
-        console.log("Sign Up", this.state);
-        API.createTickets(this.state).then(function(response){
+        API.createTickets(this.state).then(function (response) {
             console.log(response);
-        });
+        }).then(function () {
+            const toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+            });
+            toast({
+                type: 'success',
+                title: 'Ticket created successfully'
+            });
+             setTimeout(function() {
+                window.location.reload();
+              }, 3000);
+        })
     }
+
     captureInput = (event) => {
         this.setState({
             [event.target.name]: event.target.value
@@ -28,29 +44,29 @@ export default class CreateTicketForm extends Component {
     render() {
         return (
             <form>
-                <div className = "row" style={{ fontFamily: "'Exo 2', sans-serif" ,color: "white", paddingTop: "20px", paddingLeft: "20px", paddingRight: "30px" }}>
-                    
-                    <div className = "col-md-12">
+                <div className="row" style={{ fontFamily: "'Exo 2', sans-serif", color: "white", paddingTop: "20px", paddingLeft: "20px", paddingRight: "30px" }}>
+
+                    <div className="col-md-12">
                         <h3>Create Ticket</h3>
                     </div>
 
                 </div>
 
                 <div className="row" style={{ paddingTop: "20px", paddingLeft: "30px", paddingRight: "30px" }}>
-                   
-                   <div className="col-md-3">
+
+                    <div className="col-md-3">
                         <label style={{ color: "white", fontFamily: "'Exo 2', sans-serif", fontSize: "20px" }}>Room</label>
-                        <input onChange={this.captureInput} name= "roomNumber" type="text" className="form-control" />
+                        <input onChange={this.captureInput} name="roomNumber" type="text" className="form-control" />
                     </div>
 
                     <div className="col-md-6">
                         <label style={{ color: "white", fontFamily: "'Exo 2', sans-serif", fontSize: "20px" }}>Guest's Last Name</label>
-                        <input onChange={this.captureInput} name= "guestsLastName" type="text" className="form-control" />
+                        <input onChange={this.captureInput} name="guestsLastName" type="text" className="form-control" />
                     </div>
 
                     <div className="col-md-3">
                         <label style={{ color: "white", fontFamily: "'Exo 2', sans-serif", fontSize: "20px" }}>Department</label>
-                        <select onChange={this.captureInput} name= "department" className="custom-select">
+                        <select onChange={this.captureInput} name="department" className="custom-select">
                             <option>Select One...</option>
                             <option value="ENG">Engineering</option>
                             <option value="FD">Front Desk</option>
@@ -64,20 +80,20 @@ export default class CreateTicketForm extends Component {
                 </div>
 
                 <div className="row" style={{ paddingBottom: "20px", paddingTop: "20px", paddingLeft: "30px", paddingRight: "30px" }}>
-                    
-                    
-                   
+
+
+
                     <div className="col-md-12">
                         <label style={{ color: "white", fontFamily: "'Exo 2', sans-serif", fontSize: "20px" }}>Request</label>
-                        <textarea onChange={this.captureInput} name= "request" type="text" className="form-control" />
+                        <textarea onChange={this.captureInput} name="request" type="text" className="form-control" />
                     </div>
-                    
+
                 </div>
-                <div className = "row" style={{marginBottom: "30px", marginTop: "20px", paddingLeft: "30px"}}>
-                    
-                <div className = "col-md-9"></div>
-                    <div className = "col-md-3">
-                    <button onClick={this.handleSubmit} style={{color: "#303440ff", backgroundColor: "#d9d9d9ff", color: "#303440ff", fontFamily: "'Exo 2', sans-serif", fontSize: "20px"}} className="btn">Submit</button>
+                <div className="row" style={{ marginBottom: "30px", marginTop: "20px", paddingLeft: "30px" }}>
+
+                    <div className="col-md-9"></div>
+                    <div className="col-md-3">
+                        <button onClick={this.handleSubmit} style={{ color: "#303440ff", backgroundColor: "#d9d9d9ff", color: "#303440ff", fontFamily: "'Exo 2', sans-serif", fontSize: "20px" }} className="btn">Submit</button>
                     </div>
                 </div>
 

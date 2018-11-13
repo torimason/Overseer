@@ -4,6 +4,8 @@ import Login from "./pages/Login.js";
 import CreateUser from "./pages/CreateUser.js";
 import CreateTicket from "./pages/CreateTicket.js";
 import FrontDesk from "./pages/FrontDesk.js"
+import Mgmt from "./pages/Mgmt.js";
+import AllUsers from "./pages/AllUsers";
 
 class App extends Component {
   componentDidMount(){
@@ -17,6 +19,8 @@ class App extends Component {
           <Route exact path="/createuser" component={CreateUser} />
           <Route exact path="/createticket" component={CreateTicket} />
           <Route exact path="/frontdesk" component={FrontDesk} />
+          <Route exact path="/mgmt" component={Mgmt} />
+          <Route exact path="/users" component={AllUsers} />
       </div>
     </Router>
     );

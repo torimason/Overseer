@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import API from "../../api/auth";
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 export default class LoginForm extends Component {
     state = {
@@ -12,7 +14,7 @@ export default class LoginForm extends Component {
         API.login(this.state).then(function(response){
             if(response.data.success === true){
                 if(response.data.department === "FD"){
-                    console.log("Route to '/frontdesk'");
+                    window.location.assign("/frontdesk")
                 }
                 else if(response.data.department === "HSKP"){
                     console.log("Route to '/housekeeping'");
@@ -27,11 +29,23 @@ export default class LoginForm extends Component {
                     console.log("Route to '/security'");
                 }
                 else if(response.data.department === "MAN"){
-                    console.log("Route to '/managment'");
+                    window.location.assign("/mgmt")
                 }
             }
             else{
-                console.log("Invalid Password");
+                const toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                });
+                toast({
+                    type: 'error',
+                    title: 'Invalid login'
+                });
+                setTimeout(function() {
+                    window.location.reload();
+                  }, 3000);
             }
         });
     }
